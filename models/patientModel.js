@@ -5,7 +5,7 @@ const medicationSchema = new mongoose.Schema({
   price: { type: Number, required: true },
 });
 
-const patientSchema = new mongoose.Schema({
+const ConferenceDocSchema = new mongoose.Schema({
   patientHospitalId: { type: String, required: true },
   patientName: { type: String },
   doctorName: { type: String },
@@ -16,4 +16,4 @@ const patientSchema = new mongoose.Schema({
   additionalInfo: { type: String },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Patient', patientSchema);
+module.exports = mongoose.model('ConferenceDoc', ConferenceDocSchema);
