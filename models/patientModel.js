@@ -14,6 +14,7 @@ const ConferenceDocSchema = new mongoose.Schema({
   patientDocument: { type: String },
   medications: [medicationSchema],
   additionalInfo: { type: String },
+  reviewed : { type: Boolean, default: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('ConferenceDoc', ConferenceDocSchema);
