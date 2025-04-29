@@ -58,3 +58,29 @@ exports.deletePatient = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.updatePatientById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const patient = await Patient.findByIdAndUpdate(id, req.body, {
+      new: true,           // return the updated document
+      runValidators: true, // respect your schema validations
+    });
+    if (!patient) return res.status(404).json({ msg: 'Patient not found' });
+    res.json(patient);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+// Delete patient by MongoDB _id
+exports.deletePatientById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const patient = await Patient.findByIdAndDelete(id);
+    if (!patient) return res.status(404).json({ msg: 'Patient not found' });
+    res.json({ msg: 'Patient deleted' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
